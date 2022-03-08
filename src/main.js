@@ -1,7 +1,9 @@
 /*
  * @Date: 2022-03-08 09:37:54
-* @Author: Bruce
+ * @Author: Bruce
+ * @Description: "主函数"
  */
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'

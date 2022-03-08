@@ -1,7 +1,9 @@
 /*
  * @Date: 2022-03-08 12:22:06
  * @Author: Bruce
+ * @Description: "路由"
  */
+
 
 import {createRouter, createWebHashHistory} from "vue-router";
 import Home from "@/pages/Home.vue";
