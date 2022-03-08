@@ -1,10 +1,14 @@
+<!--
+ * @Date: 2022-03-07 20:32:44
+ * @Author: Bruce
+-->
 <template>
   <div class="frame">
     <el-container class="frame-container">
       <el-header class="header">
-        <a href="/" class="brand"><strong>知了</strong>管理系统</a>
+        <a href="/" class="brand"><strong>布鲁斯Blog</strong>管理系统</a>
         <div class="header-content">
-          <div class="greet">欢迎，周杰伦 <span class="iconfont icon-gongwenbao"></span></div>
+          <div class="greet">欢迎，Bruce</div>
           <div class="signout">回到首页</div>
         </div>
       </el-header>
@@ -17,38 +21,39 @@
                 background-color="#545c64"
                 active-text-color="#fff"
                 text-color="#ddd"
+                :router="true"
               >
-                <el-menu-item index="1">
+                <el-menu-item index="1" :route="{name:'home'}">
                   <template #title>
                     <el-icon><house /></el-icon>
                     <span>首页</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="2">
+                <el-menu-item index="2" :route="{name: 'banner'}">
                   <template #title>
-                    <el-icon></el-icon>
+                    <el-icon><picture-rounded /></el-icon>
                     <span>轮播图</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="3">
+                <el-menu-item index="3" :route="{name: 'poster'}">
                   <template #title>
-                    <el-icon></el-icon>
+                    <el-icon><postcard /></el-icon>
                     <span>帖子管理</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="4">
+                <el-menu-item index="4" :route="{name: 'comment'}">
                   <template #title>
-                    <el-icon></el-icon>
+                    <el-icon><comment /></el-icon>
                     <span>评论管理</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="5">
+                <el-menu-item index="5" :route="{name: 'user'}">
                   <template #title>
-                    <el-icon></el-icon>
+                    <el-icon><user /></el-icon>
                     <span>用户管理</span>
                   </template>
                 </el-menu-item>
@@ -58,7 +63,7 @@
         </el-aside>
         <el-container>
           <el-main class="main">
-            这里放网页内容部分
+            <router-view></router-view>
           </el-main>
           <el-footer class="footer">这是Footer</el-footer>
         </el-container>
@@ -68,11 +73,15 @@
 </template>
 
 <script>
-import {House} from "@element-plus/icons"
+import {House, PictureRounded, Postcard, Comment, User} from "@element-plus/icons"
 export default {
   name: "App",
   components: {
-    House
+    House,
+    PictureRounded,
+    Postcard,
+    Comment,
+    User
   }
 };
 </script>
@@ -83,15 +92,15 @@ export default {
 }
 .header {
   height: 60px;
-  background: #00a65a;
+  background: #3c8dbc;
   display: flex;
 }
 
 .header .brand {
   width: 200px;
   margin-left: -20px;
-  background-color: #008d4c;
-  font-size: 20px;
+  background-color: #367fa9;
+  font-size: 18px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -115,7 +124,7 @@ export default {
 }
 
 .aside .el-menu .is-active {
-  background-color: #434a50 !important;
+  background-color: #222d32 !important;
 }
 
 .footer {
