@@ -30,6 +30,11 @@ class Http {
     _post(url, data){
         return this.http.post(url, qs.stringify(data));
     }
+
+    addBanner(data) {
+        const url = "/banner/add"
+        this._post(url, data);
+    }
 }
 
 export default new Http()
