@@ -33,7 +33,12 @@ class Http {
 
     addBanner(data) {
         const url = "/banner/add"
-        this._post(url, data);
+        return this._post(url, data);
+    }
+
+    getBannerList(){
+        const url = "/banner/list"
+        return this.http.get(url);
     }
 }
 

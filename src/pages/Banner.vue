@@ -14,6 +14,14 @@
             添加轮播图
         </el-button>
       </div>
+      <el-table :data="banners" style="width:100%"> 
+        <el-table-column prop="name" label="名称" width="180" />
+        <el-table-column prop="image_url" label="图片链接">
+          
+        </el-table-column>
+        <el-table-column prop="link_url" label="跳转链接" />
+        <el-table-column prop="priority" label="优先级" width="200px" />
+      </el-table>
     </el-space>
 
 
@@ -89,7 +97,13 @@ export default {
           }
       }
     },
-    mounted(){},
+    mounted(){
+      this.$http.getBannerList().then((res) => {
+        let result = res["data"];
+        let banners = result["data"];
+        this.banners = banners;
+      })
+    },
     methods: {
       onAddBanner() {
         this.bannerDialog = true;
@@ -107,30 +121,33 @@ export default {
         console.log(fileList)
       },
       bannerDialogSubmitEvent(){
-        console.log("aaa")
         this.$refs["dialogForm"].validate((valid) => {
+        
           if(!valid){
-            ElMessage.error("请确保数据输入正确");
+            ElMessage.error("请确保输入数据正确");
             return;
           }
           this.$http.addBanner(this.form).then((resp) => {
-            console.log(result)
-            let result = resp['data'];
-            let code = result['code'];
-            if (code==200){
-              let banner = result['data'];
+            
+            let result = resp["data"];
+            let code = result["code"];
+            if(code === 200) {
+              let banner = result["data"];
               this.banners.push(banner);
               ElMessage.success("轮播图添加成功");
               this.bannerDialog = false;
             }
           }).catch((err) => {
-              ElMessage.error("服务器开小差了，稍后在试一下");
-              this.bannerDialog = false;
+            console.log(err)
+            ElMessage.error("服务器开小差了，请稍后再试");
+            this.bannerDialog = false;
           })
         })
       }
+        
+      }
     }
-};
+
 </script>
 
 <style scoped>
