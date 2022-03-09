@@ -84,6 +84,11 @@ export default {
     Postcard,
     Comment,
     User
+  },
+  mounted(){
+    if(this.$auth.is_staff){
+      window.location = "http://127.0.0.1:5000"
+    }
   }
 };
 </script>
