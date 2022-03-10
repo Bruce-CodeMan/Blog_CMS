@@ -36,9 +36,22 @@ class Http {
         return this._post(url, data);
     }
 
+    // 获取轮播图列表的请求
     getBannerList(){
         const url = "/banner/list"
         return this.http.get(url);
+    }
+
+    // 删除轮播图的请求
+    deleteBanner(banner_id){
+        const url = "/banner/delete"
+        return this._post(url, {"id": banner_id})
+    }
+
+    // 编辑轮播图的请求
+    editBanner(data){
+        const url = "/banner/edit"
+        return this._post(url, data)
     }
 }
 
