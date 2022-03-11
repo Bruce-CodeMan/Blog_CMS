@@ -53,6 +53,19 @@ class Http {
         const url = "/banner/edit"
         return this._post(url, data)
     }
+
+    // 获取帖子列表
+    getPosterList(page){
+        const url = "/poster/list?page=" + (page?page:1)
+        console.log(url)
+        return this.http.get(url);
+    }
+
+    // 删除帖子
+    deletePoster(poster_id){
+        const url = "/poster/delete"
+        return this._post(url, {"id": poster_id});
+    }
 }
 
 export default new Http()
