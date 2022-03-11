@@ -77,6 +77,19 @@ class Http {
         const url = "/comment/delete"
         return this._post(url, {"id": comment_id})
     }
+
+    // 获取用户信息
+    getUserList(page){
+        const url = "/user/list?page=" + (page?page:1)
+        return this.http.get(url)
+
+    }
+
+    // 激活或者拉黑用户
+    activeUser(user_id, is_active){
+        const url = "/user/active"
+        return this._post(url, {"id": user_id, "is_active": is_active})
+    }
 }
 
 export default new Http()
