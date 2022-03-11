@@ -36,19 +36,19 @@ class Http {
         return this._post(url, data);
     }
 
-    // 获取轮播图列表的请求
+    // 获取轮播图列表
     getBannerList(){
         const url = "/banner/list"
         return this.http.get(url);
     }
 
-    // 删除轮播图的请求
+    // 删除轮播图
     deleteBanner(banner_id){
         const url = "/banner/delete"
         return this._post(url, {"id": banner_id})
     }
 
-    // 编辑轮播图的请求
+    // 编辑轮播图
     editBanner(data){
         const url = "/banner/edit"
         return this._post(url, data)
@@ -65,7 +65,8 @@ class Http {
     deletePoster(poster_id){
         const url = "/poster/delete"
         return this._post(url, {"id": poster_id});
-    }
+    }    
+
 }
 
 export default new Http()

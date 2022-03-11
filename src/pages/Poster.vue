@@ -23,8 +23,6 @@
           <template #default="scope">
             <el-button
               type="danger"
-              circle
-              size="mini"
               @click="onDeletePosterClick(scope.$index)"
             >
               <el-icon><delete /></el-icon>
@@ -116,12 +114,9 @@ export default {
       })
     },
     onPageChanged(current_page){
-      console.log(current_page)
       this.$http.getPosterList(current_page).then(resp => {
         let result = resp["data"]
         let code = result["code"]
-        console.log("xxx")
-        console.log(result)
         if(code === 200){
           let data = result["data"]
           this.posters = data["poster_list"]
