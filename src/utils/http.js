@@ -57,7 +57,6 @@ class Http {
     // 获取帖子列表
     getPosterList(page){
         const url = "/poster/list?page=" + (page?page:1)
-        console.log(url)
         return this.http.get(url);
     }
 
@@ -65,8 +64,19 @@ class Http {
     deletePoster(poster_id){
         const url = "/poster/delete"
         return this._post(url, {"id": poster_id});
-    }    
+    }
+    
+    // 获取评论
+    getCommentList(page){
+        const url = "/comment/list?page=" + (page?page:1)
+        return this.http.get(url)
+    }
 
+    // 删除评论
+    deleteComment(comment_id){
+        const url = "/comment/delete"
+        return this._post(url, {"id": comment_id})
+    }
 }
 
 export default new Http()
