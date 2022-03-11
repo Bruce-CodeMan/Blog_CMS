@@ -82,6 +82,7 @@ export default {
       
     },
     methods: {
+      // 获取所有帖子的列表
     getPosterList(page){
       this.$http.getPosterList(page).then(resp => {
           let result = resp["data"]
@@ -94,10 +95,12 @@ export default {
           }
         })
     },
+    // 删除按钮对话框
     onDeletePosterClick(index) {
       this.confirmDialogVisible = true;
       this.deletingIndex = index;
     },
+    // 确认删除
     onConfirmDeletePosterClick(){
       let poster = this.posters[this.deletingIndex]
       this.$http.deletePoster(poster.id).then(resp => {
@@ -113,6 +116,7 @@ export default {
         }
       })
     },
+    // 分页
     onPageChanged(current_page){
       this.$http.getPosterList(current_page).then(resp => {
         let result = resp["data"]

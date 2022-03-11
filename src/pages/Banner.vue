@@ -166,7 +166,7 @@ export default {
       })
     },
     methods: {
-
+      // 初始化对话框
       initForm(banner){
         if(banner){
           this.form.id = banner.id;
@@ -183,10 +183,12 @@ export default {
           }
         }
       },
+      // 增加轮播图
       onAddBanner() {
         this.initForm();
         this.bannerDialog = true;
       },
+      // 图片上传成功
       onImageUploadSuccess(response){
         if(response['code']==200){
           var image_name = response['data']['image_url'];
@@ -194,6 +196,7 @@ export default {
           this.form.image_url=image_url;
         }
       },
+      // 图片上传
       onImageUploadError(response, file, fileList){
         console.log(response)
         console.log(file)
@@ -242,16 +245,19 @@ export default {
           }
         })
       },
+      // 编辑
       onEditEvent(index){
         this.bannerDialog = true;
         this.editIndex = index;
         let banner = this.banners[index];
         this.initForm(banner);
       },
+      // 删除
       onDeleteEvent(index){
         this.deletingIndex = index;
         this.confirmDialog = true
       },
+      // 确认删除
       confirmDeleteDialog(){
         let banner = this.banners[this.deletingIndex];
         this.$http.deleteBanner(banner.id).then((resp) => {
