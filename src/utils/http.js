@@ -7,13 +7,19 @@ import axios from "axios"
 import auth from "./auth"
 import qs from "qs"
 
-const SERVER_HOST = "http://127.0.0.1:5000"
+
+// const SERVER_HOST = process.env.VUE_APP_SERVER_HOST
 
 class Http {
     constructor(){
-        this.server_host = SERVER_HOST
+        if(process.env.NODE_ENV == 'production'){
+            this.server_host = window.location.origin;
+        }else{
+            this.server_host = "http://127.0.0.1:5000"
+        }
+        
         this.http = axios.create({
-            baseURL: SERVER_HOST + "/cms",
+            baseURL: this.server_host + "/cms",
             timeout: 1000 * 60
         });
 
@@ -89,6 +95,18 @@ class Http {
     activeUser(user_id, is_active){
         const url = "/user/active"
         return this._post(url, {"id": user_id, "is_active": is_active})
+    }
+
+    // 获取所有板块下的帖子数量
+    getBoardPosterCount(){
+        const url = "/board/poster/count"
+        return this.http.get(url)
+    }
+
+    // 获取近7天帖子的数量
+    getDay7PosterCount(){
+        const url = "/day7/poster/count"
+        return this.http.get(url)
     }
 }
 

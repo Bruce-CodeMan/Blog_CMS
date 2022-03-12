@@ -11,6 +11,7 @@ import Banner from "@/pages/Banner.vue";
 import Poster from "@/pages/Poster.vue";
 import Comment from "@/pages/Comment.vue";
 import User from "@/pages/User.vue";
+import Board from "@/pages/Board.vue";
 
 const routes = [{
     path: "/", component: Home, name: "home"
@@ -22,6 +23,8 @@ const routes = [{
     path: "/comment", component: Comment, name: "comment" 
 }, {
     path: "/user", component: User, name: "user" 
+}, {
+    path: "/board", component: Board, name: "board"
 }]
 
 const router = createRouter({

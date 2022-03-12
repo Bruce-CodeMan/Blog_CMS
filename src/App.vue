@@ -10,8 +10,10 @@
       <el-header class="header">
         <a href="/" class="brand"><strong>布鲁斯Blog</strong>管理系统</a>
         <div class="header-content">
-          <div class="greet">欢迎，Bruce</div>
-          <div class="signout">回到首页</div>
+          <div class="greet">欢迎，{{ username }}</div>
+          <div class="signout">
+            <a :href="$http.server_host" style="color:white">回到首页</a>
+            </div>
         </div>
       </el-header>
       <el-container>
@@ -59,6 +61,12 @@
                     <span>用户管理</span>
                   </template>
                 </el-menu-item>
+                <el-menu-item index="6" :route="{name: 'board'}">
+                  <template #title>
+                    <el-icon><data-board /></el-icon>
+                    <span>板块管理</span>
+                  </template>
+                </el-menu-item>
               </el-menu>
             </el-col>
           </el-row>
@@ -75,7 +83,7 @@
 </template>
 
 <script>
-import {House, PictureRounded, Postcard, Comment, User} from "@element-plus/icons"
+import {House, PictureRounded, Postcard, Comment, User, DataBoard} from "@element-plus/icons"
 export default {
   name: "App",
   components: {
@@ -83,11 +91,21 @@ export default {
     PictureRounded,
     Postcard,
     Comment,
-    User
+    User,
+    DataBoard
+  },
+  data(){
+    return{
+      username: "",
+    }
+    
   },
   mounted(){
-    if(this.$auth.is_staff){
-      window.location = "http://127.0.0.1:5000"
+    var res = JSON.parse(this.$auth.user);
+    res = JSON.parse(res)
+    this.username = res["username"]
+    if(!res['is_staff']){
+      window.location = this.$http.server_host;
     }
   }
 };

@@ -30,7 +30,7 @@
               </template>
             </el-table-column>
         </el-table>
-        <div>
+        <div style="text-align:center">
           <el-pagination
             background
             layout="prev,pager,next"
@@ -49,7 +49,7 @@
     title="提示"
     width="30%"
   >
-    <span>如果删除帖子，该帖子下所有的评论也会被删除，您确定要删除吗？</span>
+    <span>您确定要删除此条评论吗？</span>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="confirmDialogVisible = false">取消</el-button>
